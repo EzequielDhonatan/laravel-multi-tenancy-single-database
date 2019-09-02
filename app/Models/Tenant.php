@@ -9,7 +9,7 @@ class Tenant extends Model
 {
     protected $fillable = [
 
-        'name', 'logo'
+        'name', 'uuid'
 
     ];
 
