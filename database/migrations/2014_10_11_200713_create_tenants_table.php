@@ -20,6 +20,7 @@ class CreateTenantsTable extends Migration
             ================================================== */
             $table->string('name')->unique(); ## NOME
             $table->string('logo')->nullable(); ## LOGOTIPO
+            $table->uuid('uuid')->nullable(); ## UUID
 
             $table->timestamps();
         });
