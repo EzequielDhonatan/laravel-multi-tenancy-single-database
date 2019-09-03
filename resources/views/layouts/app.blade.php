@@ -86,7 +86,9 @@
         </nav> <!-- navbar navbar-expand-md navbar-light bg-white shadow-sm -->
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
 
     </div> <!-- app -->

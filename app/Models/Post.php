@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Scopes\Tenant\TenantScope;
+use App\Observers\Tenant\TenantObserver;
 
 class Post extends Model
 {
@@ -15,6 +16,8 @@ class Post extends Model
         parent::boot();
 
         static::addGlobalScope(new TenantScope);
+
+        static::observe(new TenantObserver);
     }
 
     public function user()
