@@ -4,21 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Scopes\Tenant\TenantScope;
-use App\Observers\Tenant\TenantObserver;
+use App\Tenant\Traits\TenantTrait;
 
 class Post extends Model
 {
+    use TenantTrait;
+
     protected $fillable = ['user_id', 'title', 'body'];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new TenantScope);
-
-        static::observe(new TenantObserver);
-    }
 
     public function user()
     {
