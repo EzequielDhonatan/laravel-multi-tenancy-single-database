@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use App\Http\Requests\Post\StoreUpdateFormRequest;
 class PostController extends Controller
 {
     /**
@@ -35,7 +35,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateFormRequest $request)
     {
         $post = $request->user()
                         ->posts()
@@ -73,7 +73,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateFormRequest $request, $id)
     {
         //
     }
