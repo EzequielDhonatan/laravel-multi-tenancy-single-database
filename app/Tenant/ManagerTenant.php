@@ -4,7 +4,7 @@ namespace App\Tenant;
 
 class ManagerTenant
 {
-    public function getTenantIdentidy()
+    public function getTenantIdentify()
     {
         return auth()->user()->tenant->id;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Tenant\TenantUnique;
 
 class StoreUpdateFormRequest extends FormRequest
 {
@@ -23,11 +24,15 @@ class StoreUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(3);
-
         return [
             
-            'title'                 => "required|min:3|max:60|unique:posts,title,{$id},id",
+            'title'                 => [
+                'required',
+                'min:3',
+                'max:100',
+                new TenantUnique('posts'),
+            ],
+
             'body'                  => 'required|min:3|max:10000',
 
         ];
