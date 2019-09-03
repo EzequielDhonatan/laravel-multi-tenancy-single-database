@@ -14,13 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $tenant = auth()->user()->tenant->id;
+        $posts = Post::get();
 
-        $posts = Post::where('tenant_id', $tenant)->get();
-
-        dd($posts);
-
-        // return view('', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     /**
