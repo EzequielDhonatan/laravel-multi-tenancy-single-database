@@ -1,4 +1,4 @@
-## LARAVEL MULTI TENANCY SINGLE DATABASE
+# LARAVEL MULTI TENANCY SINGLE DATABASE
 
 Sistema com múltiplos clientes, todos na mesma aplicação e no mesmo database (Banco de dados).
 
@@ -9,7 +9,7 @@ Algumas pastas estão ignoradas pelo .gitignore.
 Levando em consideração que você tenha o <code> PHP >= 7.1.3 </code> e <code> <a href="https://getcomposer.org">composer</a>  </code> na sua variável global PATH, para uma nova instalação do Laravel.
 
 
-# Clonando o projeto
+## Clonando o projeto
 
 Vou  considerar que você esteja rodando um sistema operacional Linux/Windows e com o git instalado, faça o seguinte:
 
