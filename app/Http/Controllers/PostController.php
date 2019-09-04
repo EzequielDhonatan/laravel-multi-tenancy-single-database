@@ -44,9 +44,25 @@ class PostController extends Controller
      */
     public function store(StoreUpdateFormRequest $request)
     {
+        $data = $request->all();
+
+        ## UPLOAD IMAGEM
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $name           = kebab_case($request->title); ## NOME
+            $extension      = $request->image->extension(); ## EXTENSÃO
+            $nameImage      = "{$name}.$extension"; ## NOME + EXTENSÃO
+            $data['image']  = $nameImage;
+            
+            $upload         = $request->image->storeAs('posts', $nameImage); ## UPLOAD
+
+            ## VERIFICAÇÃO
+            if (!$upload)
+                return redirect()->back()->with('errors', ['Falha no upload']);
+        }
+
         $post = $request->user()
                         ->posts()
-                        ->create($request->all());
+                        ->create($data);
 
         return redirect()
                     ->route('posts.index')

@@ -45,6 +45,14 @@
     <div class="row">
 
         <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
+            <input type="file" class="form-control" name="image" id="image" value="{{ $post->image }}" placeholder="Imagem">
+        </div>
+
+    </div> <!-- row -->
+
+    <div class="row">
+
+        <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
             <button class="btn btn-outline-success" type="submit">Salvar</button>
             <a class="btn btn-outline-danger" href="{{ route('posts.index') }}">Cancelar</a>
         </div>

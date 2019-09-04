@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             
             $table->string('title'); ## TÍTULO
             $table->text('body'); ## CONTEÚDO
+            $table->string('image')->nullable(); ## IMAGEM
 
             ## TENANT
             $table->foreign('tenant_id')
