@@ -1,6 +1,6 @@
 ## LARAVEL MULTI TENANCY SINGLE DATABASE
 
-Sistema com múltiplos clientes, todos na mesma aplicação e no mesmo banco de dados.
+Sistema com múltiplos clientes, todos na mesma aplicação e no mesmo database (Banco de dados).
 
 <br>
 
@@ -14,7 +14,7 @@ Levando em consideração que você tenha o <code> PHP >= 7.1.3 </code> e <code>
 Vou  considerar que você esteja rodando um sistema operacional Linux/Windows e com o git instalado, faça o seguinte:
 
 <strong> Clone o projeto</strong> <br>
-<code>  git clone https://gitlab.com/ezequieldhonatan/studio-m-fotografia.git  </code> 
+<code>  git clone https://github.com/ezequieldhonatan/laravel-multi-tenancy-single-database  </code> 
 <br>
 
 <strong> Instale as dependências e o framework</strong>
@@ -23,18 +23,17 @@ Vou  considerar que você esteja rodando um sistema operacional Linux/Windows e 
 composer install --no-scripts
 </code>
 
-<strong>Copie o arquivo .env.example</strong>
+<strong>Crie o arquivo .env</strong>
 <br>
-<code> cp .env.example .env </code> <br><br>
-Ainda no .env configure o acesso ao banco de dados: <br>
-<code>
-DB_CONNECTION=mysql <br>
-DB_HOST=127.0.0.1    <br>
-DB_PORT=3306  <br>
-DB_DATABASE=nome_bd_local <br>
-DB_USERNAME=**** <br>
-DB_PASSWORD=****
-</code>
+<code> touch .env </code> <br><br>
+Copie e cole os dados do arquivo .env.example para o arquivo .env. Logo em seguida configure o acesso ao banco de dados: <br>
+
+<code>DB_CONNECTION= mysql </code>
+<code>DB_HOST= 127.0.0.1    </code>
+<code>DB_PORT= 3306  </code>
+<code>DB_DATABASE= laravel-multi-tenancy-single-database </code>
+<code>DB_USERNAME= root </code>
+<code>DB_PASSWORD= secret</code>
 
 <strong> Crie uma nova chave para a aplicação</strong>
 <br>
@@ -53,8 +52,8 @@ Caso o host do e-mail seja o GMAIL, alterar as configurações do seu .env para
 MAIL_DRIVER= smtp <br>
 MAIL_HOST= smtp.gmail.com <br>
 MAIL_PORT=587 <br>
-MAIL_USERNAME= minhaconta@gmail.com <br>
-MAIL_PASSWORD= senhaminhaconta <br>
+MAIL_USERNAME= email@gmail.com <br>
+MAIL_PASSWORD= password <br>
 MAIL_ENCRYPTION= tls
 
 </code>
