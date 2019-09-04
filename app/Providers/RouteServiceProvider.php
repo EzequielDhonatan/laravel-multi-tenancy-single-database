@@ -51,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'tenant.filesystems'])
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
