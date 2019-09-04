@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Cadastrar Post</h1>
+<h1>Editar Post {{ $post->title }}</h1>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -20,14 +20,16 @@
     </div>
 @endif
 
-<form class="form" method="POST" action="{{ route('posts.store') }}">
+<form class="form" method="POST" action="{{ route('posts.update', $post->id) }}">
 
     @csrf
+
+    @method('PUT')
 
     <div class="row">
 
         <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
-            <input type="text" class="form-control" name="title" id="title" placeholder="Título">
+            <input type="text" class="form-control" name="title" id="title" value="{{ $post->title }}" placeholder="Título">
         </div>
 
     </div> <!-- row -->
@@ -35,7 +37,7 @@
     <div class="row">
 
         <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
-            <textarea class="form-control" name="body" id="body" cols="30" rows="10" placeholder="Conteúdo"></textarea>
+            <textarea class="form-control" name="body" id="body" cols="30" rows="10" placeholder="Conteúdo">{{ $post->body }}</textarea>
         </div>
 
     </div> <!-- row -->

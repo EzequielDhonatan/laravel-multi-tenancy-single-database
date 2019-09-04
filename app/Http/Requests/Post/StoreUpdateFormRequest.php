@@ -30,7 +30,7 @@ class StoreUpdateFormRequest extends FormRequest
                 'required',
                 'min:3',
                 'max:100',
-                new TenantUnique('posts'),
+                new TenantUnique('posts', $this->segment(2)),
             ],
 
             'body'                  => 'required|min:3|max:10000',

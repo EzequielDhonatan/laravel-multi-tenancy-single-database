@@ -4,6 +4,8 @@
 
 <h1>Posts</h1>
 
+<a class="btn btn-outline-success" href="{{ route('posts.create') }}">Novo</a>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -23,8 +25,20 @@
 <hr>
 
 @forelse ($posts as $post)
-    <p><strong>Título: </strong>{{ $post->title }}</p>
-    <p><strong>Conteúdo: </strong>{{ $post->body }}</p>
+
+    <p>
+        <a href="{{ route('posts.edit', $post->id) }}">
+            <strong>Título: </strong>
+            {{ $post->title }}
+        </a>
+    </p>
+
+    <p>
+        <a href="{{ route('posts.edit', $post->id) }}">
+            <strong>Conteúdo: </strong>
+            {{ $post->body }}
+        </a>
+    </p>
 
     <hr>
 @empty
