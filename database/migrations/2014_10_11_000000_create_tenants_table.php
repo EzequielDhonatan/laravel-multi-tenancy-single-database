@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateTenantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->id();
 
-            /* DADOS DO USUÁRIO
+            /* DADOS DO INQUILINO
             ================================================== */
-            $table->foreignId( 'tenant_id' )->constrained( 'tenants' ); ## TENANT
+            $table->uuid( 'uuid' )->unique(); ## UUID
 
             $table->string( 'name' ); ## NOME
-            $table->string( 'email' )->unique( ); ## E-MAIL
-            $table->timestamp( 'email_verified_at' )->nullable(); ## E-MAIL VERIFICADO EM
-            $table->string( 'password' ); ## SENHA
-            $table->rememberToken();
+            $table->string( '' ); ##
 
             $table->timestamps();
         });
@@ -37,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tenants');
     }
 }
