@@ -40,9 +40,12 @@
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
             <div class="form-outline">
-                <textarea class="form-control" id="body" name="body" cols="30" rows="5"></textarea>
+                <textarea class="form-control @error( 'body' ) is-invalid @enderror" id="body" name="body" cols="30" rows="5"></textarea>
                 <label class="form-label" for="body">Conteúdo</label>
             </div>
+            @error( 'body' )
+                <span style="color: red" class="error">{{ $message }}</span>
+            @enderror
 
         </div> <!-- -->
 

@@ -25,8 +25,8 @@ class StoreUpdateFormRequest extends FormRequest
     {
         return [
 
-            'title'         => 'required',
-            'body'          => 'required',
+            'title'         => 'required|min:3|max:100|unique:posts',
+            'body'          => 'required|max:10000',
             'situation'     => 'required'
 
         ]; // return
