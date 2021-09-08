@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Panel\Blog\Post\Post;
+use App\Http\Requests\Panel\Blog\Post\StoreUpdateFormRequest;
 
 class PostController extends Controller
 {
@@ -44,18 +45,28 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( StoreUpdateFormRequest $request )
     {
-        //
+        ## VERIFICA
+        if ( !$this->repository->create( $request->validated() ) )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Algo errado!' )
+                            ->withInput();
+
+        ## RETORNO
+        return redirect()
+                        ->route( 'post.index')
+                        ->withSuccess( 'Eba... Cadastro realizado com sucesso!' );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $uuid )
     {
         //
     }
@@ -63,10 +74,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $uuid )
     {
         //
     }
@@ -75,10 +86,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request,  $uuid )
     {
         //
     }
@@ -86,10 +97,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $uuid )
     {
         //
     }
