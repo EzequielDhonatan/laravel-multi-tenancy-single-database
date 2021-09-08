@@ -14,7 +14,7 @@
 
         <div class="mt-4">
 
-            @include( 'pages.panel.register.activity._partials.one' )
+            @include( 'pages.panel.blog.post._partials.one' )
 
         </div> <!-- -->
 

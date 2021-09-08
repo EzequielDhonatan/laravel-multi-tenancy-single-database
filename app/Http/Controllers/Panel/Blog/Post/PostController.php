@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view( 'pages.panel.blog.post.create-edit' );
     }
 
     /**

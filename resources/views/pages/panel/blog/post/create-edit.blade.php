@@ -17,13 +17,13 @@
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{ route( 'activity.index' ) }}">
-                                Atividades
+                            <a href="{{ route( 'post.index' ) }}">
+                                Blog
                             </a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Dados da atividade
+                            Dados do post
                         </li>
 
                     </ol> <!-- breadcrumb -->
@@ -48,21 +48,21 @@
 
                         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
-                            @if ( isset( $activity ) )
+                            @if ( isset( $post ) )
 
-                            <form method="POST" action="{{ route( 'activity.update', $activity->uuid ) }}">
+                            <form method="POST" action="{{ route( 'post.update', $post->uuid ) }}">
 
                                 {!! method_field('PUT') !!}
 
                             @else
 
-                            <form method="POST" action="{{ route( 'activity.store' ) }}">
+                            <form method="POST" action="{{ route( 'post.store' ) }}">
 
                             @endif
 
                                 {{ csrf_field() }}
 
-                                @include( 'pages.panel.register.activity._partials.tabs' )
+                                @include( 'pages.panel.blog.post._partials.tabs' )
 
                                 <div class="mt-4">
 
@@ -76,7 +76,7 @@
                                                     Salvar
                                                 </button>
 
-                                                <a class="btn btn-outline-danger btn-rounded" href="{{ route( 'activity.index' ) }}">
+                                                <a class="btn btn-outline-danger btn-rounded" href="{{ route( 'post.index' ) }}">
                                                     Cancelar
                                                 </a>
 

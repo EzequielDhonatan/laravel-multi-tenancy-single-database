@@ -6,7 +6,7 @@
 
             <div class="form-group">
                 <label for="name">Nome</label>
-                <input type="text" class="form-control @error( 'name' ) is-invalid @enderror" id="name" name="name" value="{{ $activity->name ?? old( 'name' ) }}">
+                <input type="text" class="form-control @error( 'name' ) is-invalid @enderror" id="name" name="name" value="{{ $post->name ?? old( 'name' ) }}">
                 @error( 'name' )
                     <span style="color: red" class="error">{{ $message }}</span>
                 @enderror
@@ -19,8 +19,8 @@
             <div class="form-group">
                 <label for="situation">Situação</label>
                 <select class="form-control @error( 'situation' ) is-invalid @enderror" id="situation" name="situation">
-                    <option value="A" @if( isset( $activity ) && $activity->situation == 'A' ) selected @endif>Ativo</option>
-                    <option value="I" @if( isset( $activity ) && $activity->situation == 'I' ) selected @endif>Inativo</option>
+                    <option value="A" @if( isset( $post ) && $post->situation == 'A' ) selected @endif>Ativo</option>
+                    <option value="I" @if( isset( $post ) && $post->situation == 'I' ) selected @endif>Inativo</option>
                 </select>
                 @error( 'situation' )
                     <span style="color: red" class="error">{{ $message }}</span>

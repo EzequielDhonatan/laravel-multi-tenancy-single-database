@@ -15,11 +15,11 @@
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{ route( 'activity.index' ) }}">Atividades</a>
+                            <a href="{{ route( 'post.index' ) }}">Blog</a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Detalhes da atividade
+                            Detalhes do post
                         </li>
 
                     </ol> <!-- breadcrumb -->
@@ -51,11 +51,11 @@
                                 <ul>
 
                                     <li>
-                                        <strong>Nome:</strong> {{ $activity->name }}
+                                        <strong>Nome:</strong> {{ $post->name }}
                                     </li>
 
                                     <li>
-                                        <strong>Situação: </strong> {{ $activity->situation == 'A' ? 'Ativo' : 'Inativo' }}
+                                        <strong>Situação: </strong> {{ $post->situation == 'A' ? 'Ativo' : 'Inativo' }}
                                     </li>
 
                                 </ul> <!-- -->
@@ -73,7 +73,7 @@
                             <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
                                 <div class="form-group">
-                                    <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'activity.index' ) }}">
+                                    <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'post.index' ) }}">
                                         Voltar
                                     </a>
                                 </div>
