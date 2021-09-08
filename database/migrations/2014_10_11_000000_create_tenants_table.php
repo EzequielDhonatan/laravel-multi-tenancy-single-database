@@ -21,7 +21,6 @@ class CreateTenantsTable extends Migration
             $table->uuid( 'uuid' )->unique(); ## UUID
 
             $table->string( 'name' ); ## NOME
-            $table->string( '' ); ##
 
             $table->timestamps();
         });

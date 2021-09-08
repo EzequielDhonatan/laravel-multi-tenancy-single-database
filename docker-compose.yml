@@ -2,7 +2,7 @@ version: "3.7"
 services:
 
     ## Image
-    laravel_multi_tenancy_single_database:
+    laravel_multi_tenancy_singel_database:
         build:
             args:
                 user: ezequieldhonatan
@@ -15,7 +15,7 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - github_ezequieldhonatan
+            - github
 
     ## Nginx
     nginx:
@@ -28,10 +28,10 @@ services:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - github_ezequieldhonatan
+            - github
 
     ## MySQL
-    db_laravel_multi_tenancy_single_database:
+    db_laravel_multi_tenancy_singel_database:
         image: mysql:5.7.22
         restart: unless-stopped
         environment:
@@ -42,10 +42,10 @@ services:
         volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
-            - 3308:3306
+            - 3306:3306
         networks:
-            - github_ezequieldhonatan
+            - github
 
 networks:
-    github_ezequieldhonatan:
+    github:
         driver: bridge
