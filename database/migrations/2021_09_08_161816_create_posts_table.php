@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->foreignId( 'user_id' )->constrained( 'users' ); ## USUÁRIO
 
             $table->string( 'title' ); ## TÍTULO
+            $table->string( 'url' ); ## URL
             $table->text( 'body' ); ## CONTEÚDO
 
             $table->enum( 'situation', [ 'A', 'I' ] )->default( 'A' ); ## SITUAÇÃO

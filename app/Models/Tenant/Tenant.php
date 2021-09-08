@@ -20,7 +20,7 @@ class Tenant extends Model
 
         self::creating( function( $model ) {
 
-            $model->uuid = ( string ) Str::uuid();
+            $model->uuid = ( string ) Str::uuid(4);
 
         });
     } // boot

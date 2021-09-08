@@ -48,7 +48,7 @@ class PostController extends Controller
     public function store( StoreUpdateFormRequest $request )
     {
         ## VERIFICA
-        if ( !$this->repository->create( $request->validated() ) )
+        if ( !$this->repository->with( [ 'user', 'posts' ] )->create( $request->validated() ) )
             return redirect()
                             ->back()
                             ->withError( 'Ops... Algo errado!' )
