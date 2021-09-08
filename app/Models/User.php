@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Panel\Blog\Post\Post;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -58,4 +60,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-}
+
+    public function posts()
+    {
+        return $this->hasMany( Post::class );
+    }
+
+} // User
