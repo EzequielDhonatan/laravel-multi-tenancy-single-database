@@ -4,6 +4,8 @@ namespace App\Http\Requests\Panel\Blog\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use App\Rules\Tenant\Unique\TenantUnique;
+
 class StoreUpdateFormRequest extends FormRequest
 {
     /**
@@ -25,7 +27,11 @@ class StoreUpdateFormRequest extends FormRequest
     {
         return [
 
-            'title'         => 'required|min:3|max:100|unique:posts',
+            'title'         => [
+                'required|min:3|max:100|unique:posts',
+                new TenantUnique( 'posts' )
+            ],
+
             'body'          => 'required|max:10000',
             'situation'     => 'required'
 
