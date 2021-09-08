@@ -79,7 +79,13 @@ class PostController extends Controller
      */
     public function edit( $uuid )
     {
-        //
+        ## RECUPERA
+        if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
+        return redirect()
+                        ->back()
+                        ->withError( 'Ops... Registro não encontrado!' );
+
+        return view( 'pages.panel.blog.post.create-edit', compact( 'post' ) );
     }
 
     /**
@@ -89,9 +95,23 @@ class PostController extends Controller
      * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request,  $uuid )
+    public function update( StoreUpdateFormRequest $request,  $uuid )
     {
-        //
+        ## RECUPERA
+        if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Registro não encontrado!' );
+        ## VERIFICA
+        if ( !$post->update( $request->all() ) )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Falha ao atualizar!' )
+                            ->withInput();
+        ## RETORNO
+        return redirect()
+                        ->route( 'post.index' )
+                        ->withSuccess( 'Eba... Registro atualizado com sucesso!' );
     }
 
     /**

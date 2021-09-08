@@ -15,7 +15,7 @@ class TenantUnique implements Rule
      *
      * @return void
      */
-    public function __construct( $table, $columnValue = null, $column = 'id'  )
+    public function __construct( $table, $columnValue = null, $column = 'uuid'  )
     {
         $this->table        = $table;
         $this->columnValue  = $columnValue;
