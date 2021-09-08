@@ -15,17 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-
-            /* DADOS DO USUÁRIO
-            ================================================== */
-            $table->foreignId( 'tenant_id' )->constrained( 'tenants' ); ## TENANT
-
-            $table->string( 'name' ); ## NOME
-            $table->string( 'email' )->unique( ); ## E-MAIL
-            $table->timestamp( 'email_verified_at' )->nullable(); ## E-MAIL VERIFICADO EM
-            $table->string( 'password' ); ## SENHA
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
-
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }
