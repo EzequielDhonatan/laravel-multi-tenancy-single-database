@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
-use App\Models\User;
 use App\Models\Tenant\Tenant;
-use Illuminate\Support\Str;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -34,7 +32,6 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         $tenant = Tenant::create([
-            'uuid'  => Str::uuid(4),
             'name'  => $input['tenant']
         ]);
 
