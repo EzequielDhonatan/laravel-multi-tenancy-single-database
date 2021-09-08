@@ -18,11 +18,15 @@ class CreatePostsTable extends Migration
 
             /* DADOS DO POST
             ================================================== */
+            $table->uuid( 'uuid' )->unique(); ## UUID
+
             $table->foreignId( 'tenant_id' )->constrained( 'tenants' ); ## INQUILINO
             $table->foreignId( 'user_id' )->constrained( 'users' ); ## USUÁRIO
 
             $table->string( 'title' ); ## TÍTULO
             $table->text( 'body' ); ## CONTEÚDO
+
+            $table->enum( 'situation', [ 'A', 'I' ] )->default( 'A' ); ## SITUAÇÃO
 
             $table->timestamps();
         });

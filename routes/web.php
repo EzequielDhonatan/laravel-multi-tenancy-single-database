@@ -24,6 +24,7 @@ Route::group(
     /* BLOG
     ================================================== */
     Route::resource( 'blog/post', PostController::class ); ## POST
+    Route::any( 'blog/post-search', [ PostController::class, 'search' ] )->name( 'post.search' ); ## POST SEARCH
 
 });
 

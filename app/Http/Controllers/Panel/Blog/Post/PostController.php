@@ -93,4 +93,10 @@ class PostController extends Controller
     {
         //
     }
-}
+
+    public function search()
+    {
+        //
+    }
+
+} // PostController
