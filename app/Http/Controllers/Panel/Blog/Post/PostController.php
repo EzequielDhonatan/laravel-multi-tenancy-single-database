@@ -101,9 +101,9 @@ class PostController extends Controller
     {
         ## RECUPERA
         if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
-        return redirect()
-                        ->back()
-                        ->withError( 'Ops... Registro não encontrado!' );
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Registro não encontrado!' );
 
         return view( 'pages.panel.blog.post.create-edit', compact( 'post' ) );
     }
