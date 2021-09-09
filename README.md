@@ -2,9 +2,9 @@
 
 Sistema com múltiplos clientes, todos na mesma aplicação e no mesmo database (Banco de dados).
 
-<br>
-
 ### Instalação
+
+Levando em consideração que você já tenha instalado em sua máquina o "DOCKER", "DOCKER COMPOSE" e o "NPM". Vamos seguir para a instalação!
 
 Clonar Projeto
 ```sh
