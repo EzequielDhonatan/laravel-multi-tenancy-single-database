@@ -5,8 +5,9 @@ namespace App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\User;
 use Illuminate\Support\Str;
+
+use App\Models\User;
 
 class Tenant extends Model
 {
@@ -19,11 +20,9 @@ class Tenant extends Model
         parent::boot();
 
         self::creating( function( $model ) {
-
-            $model->uuid = ( string ) Str::uuid(4);
-
+            $model->uuid = $model->uuid = ( string ) Str::uuid();
         });
-    } // boot
+    } //
 
     public function users()
     {

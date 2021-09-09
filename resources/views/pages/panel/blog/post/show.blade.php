@@ -51,11 +51,19 @@
                                 <ul>
 
                                     <li>
-                                        <strong>Nome:</strong> {{ $post->name }}
+                                        <strong>Título:</strong> {{ $post->title }}
+                                    </li>
+
+                                    <li>
+                                        <strong>URL:</strong> {{ $post->url }}
                                     </li>
 
                                     <li>
                                         <strong>Situação: </strong> {{ $post->situation == 'A' ? 'Ativo' : 'Inativo' }}
+                                    </li>
+
+                                    <li>
+                                        <strong>Conteúdo:</strong> {{ $post->body }}
                                     </li>
 
                                 </ul> <!-- -->

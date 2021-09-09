@@ -27,9 +27,11 @@ class StoreUpdateFormRequest extends FormRequest
     {
         return [
 
+            'image'         => 'image|mimes:jpg,jpeg,png|max:1024',
+
             'title'         => [
-                'required|min:3|max:100|unique:posts',
-                new TenantUnique( 'posts', $this->segment( 3 ) )
+                'required', 'min:3', 'max:100',
+                new TenantUnique( 'posts', $this->segment( 4 ) )
             ],
 
             'body'          => 'required|max:10000',

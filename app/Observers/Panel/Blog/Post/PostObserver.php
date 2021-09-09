@@ -15,7 +15,7 @@ class PostObserver
      */
     public function creating( Post $post )
     {
-        $post->uuid = Str::uuid(4);
+        $post->uuid = Str::uuid();
         $post->url  = Str::kebab( $post->title );
     }
 

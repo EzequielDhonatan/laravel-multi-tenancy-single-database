@@ -144,8 +144,10 @@
 
                                             <tr>
 
+                                                <th scope="col" style="font-weight: bold;">#</th>
                                                 <th scope="col" style="font-weight: bold;">Usuário</th>
                                                 <th scope="col" style="font-weight: bold;">Título</th>
+                                                <th scope="col" style="font-weight: bold;">Criado</th>
                                                 <th scope="col" style="font-weight: bold;" width="150">Situação</th>
                                                 <th width="100" style="font-weight: bold;"></th>
 
@@ -161,7 +163,25 @@
 
                                                 <td>
                                                     <a href="{{ route( 'post.edit', $post->uuid ) }}">
-                                                        {{ $post->name }}
+                                                        <img class="img-circle" style="max-width: 40px; margin: 10px;"  src="{{ url( 'assets/images/post/default.png' ) }}">
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{ route( 'post.edit', $post->uuid ) }}">
+                                                        {{ '@' . $post->user->name }}
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{ route( 'post.edit', $post->uuid ) }}">
+                                                        {{ $post->title }}
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{ route( 'post.edit', $post->uuid ) }}">
+                                                        {{ $post->created_at->format( 'd/m/Y' ) }}
                                                     </a>
                                                 </td>
 

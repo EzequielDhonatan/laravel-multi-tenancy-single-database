@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Panel\Blog\Post\Post;
 use App\Http\Requests\Panel\Blog\Post\StoreUpdateFormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -47,16 +49,29 @@ class PostController extends Controller
      */
     public function store( StoreUpdateFormRequest $request )
     {
-        ## VERIFICA
-        if ( !$this->repository->with( [ 'user', 'posts' ] )->create( $request->validated() ) )
+        if ( $request->hasFile( 'image' ) && $request->file( 'image' )->isValid() ) {
+            $name               = Str::kebab( $request->title );
+            $extension          = $request->image->extension();
+            $nameImage          = "{$name}.$extension";
+            $request[ 'image' ] = $nameImage;
+
+            $upload = $request->image->storeAs( 'panel/blog/post', $nameImage );
+
+            if ( !$upload )
+                return redirect()
+                                ->back()
+                                ->withError( 'Ops... Falha no Upload!' )
+                                ->withInput();
+        }
+
+        if ( !$request->user()->posts()->create( $request->validated() ) )
             return redirect()
                             ->back()
                             ->withError( 'Ops... Algo errado!' )
                             ->withInput();
 
-        ## RETORNO
         return redirect()
-                        ->route( 'post.index')
+                        ->route( 'post.index' )
                         ->withSuccess( 'Eba... Cadastro realizado com sucesso!' );
     }
 
@@ -68,7 +83,12 @@ class PostController extends Controller
      */
     public function show( $uuid )
     {
-        //
+        if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Registro não encontrado!' );
+
+        return view( 'pages.panel.blog.post.show', compact( 'post' ) );
     }
 
     /**
@@ -98,16 +118,41 @@ class PostController extends Controller
     public function update( StoreUpdateFormRequest $request,  $uuid )
     {
         ## RECUPERA
-        if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
+        if (!$post = $this->repository->where( 'uuid', $uuid )->first() )
             return redirect()
                             ->back()
                             ->withError( 'Ops... Registro não encontrado!' );
+
+        $data = $request->all();
+
+        if ( $request->hasFile( 'image' ) && $request->file( 'image' )->isValid() ) {
+            // Remove image if exists
+            if ( $post->image ) {
+                if ( Storage::exists( "posts/{$post->image}")  )
+                    Storage::delete( "posts/{$post->image}" );
+            }
+
+            $name               = Str::kebab( $request->title );;
+            $extension          = $request->image->extension();
+            $nameImage          = "{$name}.$extension";
+            $data[ 'image' ]    = $nameImage;
+
+            $upload = $request->image->storeAs( 'panel/blog/post', $nameImage );
+
+            if ( !$upload )
+                return redirect()
+                                ->back()
+                                ->withError( 'Ops... Falha no Upload!' )
+                                ->withInput();
+        }
+
         ## VERIFICA
-        if ( !$post->update( $request->all() ) )
+        if ( !$post->update( $request->validated() ) )
             return redirect()
                             ->back()
                             ->withError( 'Ops... Falha ao atualizar!' )
                             ->withInput();
+
         ## RETORNO
         return redirect()
                         ->route( 'post.index' )
@@ -122,12 +167,31 @@ class PostController extends Controller
      */
     public function destroy( $uuid )
     {
-        //
+        ## RECUPERA
+        if ( !$post = $this->repository->where( 'uuid', $uuid )->first() )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Registro não encontrado!' );
+
+        ## VERIFICA
+        if ( !$post->delete() )
+            return redirect()
+                            ->back()
+                            ->withError( 'Ops... Falha ao deletar!' );
+
+        ## RETORNO
+        return redirect()
+                        ->route( 'post.index' )
+                        ->withSuccess( 'Registro atualizado com sucesso!' );
     }
 
-    public function search()
+    public function search( Request $request )
     {
-        //
+        $filters = $request->except( '_token' );
+
+        $posts = $this->repository->search( $request->filter );
+
+        return view( 'pages.panel.blog.post.index', compact( 'posts', 'filters' ) );
     }
 
 } // PostController

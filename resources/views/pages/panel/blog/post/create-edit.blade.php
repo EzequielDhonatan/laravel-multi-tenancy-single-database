@@ -50,13 +50,13 @@
 
                             @if ( isset( $post ) )
 
-                            <form method="POST" action="{{ route( 'post.update', $post->uuid ) }}">
+                            <form method="POST" action="{{ route( 'post.update', $post->uuid ) }}" enctype="multipart/form-data">
 
                                 {!! method_field('PUT') !!}
 
                             @else
 
-                            <form method="POST" action="{{ route( 'post.store' ) }}">
+                            <form method="POST" action="{{ route( 'post.store' ) }}" enctype="multipart/form-data">
 
                             @endif
 

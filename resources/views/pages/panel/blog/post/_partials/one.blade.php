@@ -2,6 +2,26 @@
 
     <div class="row">
 
+        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+
+            <div class="form-group">
+                <label for="image">Imagem</label>
+                <input type="file" class="form-control @error( 'image' ) is-invalid @enderror" id="image" name="image" value="{{ $post->image ?? old( 'image' ) }}">
+                @error( 'image' )
+                    <span style="color: red" class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+        </div> <!-- -->
+
+    </div> <!-- row -->
+
+</div> <!-- mt-4 -->
+
+<div class="mt-4">
+
+    <div class="row">
+
         <div class="col-sm-9 col-xs-9 col-lg-9 col-md-9">
 
             <div class="form-group">
@@ -40,7 +60,7 @@
         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
             <div class="form-outline">
-                <textarea class="form-control @error( 'body' ) is-invalid @enderror" id="body" name="body" cols="30" rows="5"></textarea>
+                <textarea class="form-control @error( 'body' ) is-invalid @enderror" id="body" name="body" cols="30" rows="5">{{ $post->body ?? old( 'body' ) }}</textarea>
                 <label class="form-label" for="body">Conteúdo</label>
             </div>
             @error( 'body' )

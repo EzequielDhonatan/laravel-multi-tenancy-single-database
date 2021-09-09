@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->foreignId( 'tenant_id' )->constrained( 'tenants' ); ## INQUILINO
             $table->foreignId( 'user_id' )->constrained( 'users' ); ## USUÁRIO
 
+            $table->string( 'image' )->nullable(); ## IMAGEM
             $table->string( 'title' ); ## TÍTULO
             $table->string( 'url' ); ## URL
             $table->text( 'body' ); ## CONTEÚDO
