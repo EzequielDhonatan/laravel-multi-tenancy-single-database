@@ -1,102 +1,69 @@
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
 
-    <title>{{ config('app.name', 'Laravel Multi Tenancy Single Database') }}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- Styles -->
+        <title>{{ config( 'app.name', 'Laravel Multi Tenancy Single Database' ) }}</title>
 
-    <link rel="dns-prefetch" href="//fonts.gstatic.com"> <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> <!-- Fonts -->
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-</head>
-<body>
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    <div id="app">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 
-            <div class="container">
+        <!-- MDB -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" />
 
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel Multi Tenancy Single Database') }}
-                </a>
+        @livewireStyles
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    </head>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
-                    <ul class="navbar-nav mr-auto">
+    <body class="font-sans antialiased">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
-                        </li>
+        <x-jet-banner />
 
-                    </ul>
-                    
-                    <ul class="navbar-nav ml-auto">
-                        
-                        @guest
+        <div class="min-h-screen bg-gray-100">
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
-                            </li>
+            @livewire( 'navigation-menu' )
 
-                            @if (Route::has('register'))
+            <!-- Page Heading -->
+            @if ( isset( $header ) )
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastro') }}</a>
-                                </li>
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
 
-                            @endif
+            @endif
 
-                        @else
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
 
-                            <li class="nav-item dropdown">
+        </div> <!-- min-h-screen bg-gray-100 -->
 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+        @stack( 'modals' )
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        @livewireScripts
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
-                                </div> <!-- dropdown-menu dropdown-menu-right -->
+    </body> <!-- font-sans antialiased -->
 
-                            </li> <!-- nav-item dropdown -->
-
-                        @endguest
-
-                    </ul> <!-- navbar-nav ml-auto -->
-
-                </div> <!-- collapse navbar-collapse -->
-
-            </div> <!-- container -->
-            
-        </nav> <!-- navbar navbar-expand-md navbar-light bg-white shadow-sm -->
-
-        <main class="py-4">
-            <div class="container">
-                @yield('content')
-            </div>
-        </main>
-
-    </div> <!-- app -->
-
-    <script src="{{ asset('js/app.js') }}" defer></script> <!-- Scripts -->
-</body>
-</html>
+</html> <!-- -->

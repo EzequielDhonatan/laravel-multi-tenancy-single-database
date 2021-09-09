@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
@@ -14,23 +14,19 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             /* DADOS DO USUÁRIO
             ================================================== */
-            $table->bigInteger('tenant_id')->unsigned()->nullable(); ## TENANT
+            $table->foreignId( 'tenant_id' )->constrained( 'tenants' ); ## INQUILINO
 
-            $table->string('name'); ## NAME
-            $table->string('email')->unique(); ## E-MAIL
-            $table->timestamp('email_verified_at')->nullable(); ## VERIFICAÇÃO DE E-MAIL
-            $table->string('password'); ## SENHA
+            $table->string( 'name' ); ## NOME
+            $table->string( 'email' )->unique(); ## E-MAIL
+            $table->timestamp( 'email_verified_at' )->nullable(); ## VERIFICADO EM
+            $table->string( 'password' ); ## SENHA
             $table->rememberToken(); ## LEMBRAR TOKEN
-
-            ## TENANT
-            $table->foreign('tenant_id')
-                    ->references('id')
-                    ->on('tenants')
-                    ->onDelete('cascade');
+            $table->foreignId( 'current_team_id' )->nullable(); ## ID DA EQUIPE ATUAL
+            $table->string( 'profile_photo_path' , 2048)->nullable(); ## CAMINHO DA FOTO DO PERFIL
 
             $table->timestamps();
         });
