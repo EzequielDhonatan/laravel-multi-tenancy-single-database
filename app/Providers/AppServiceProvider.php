@@ -3,7 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
+
+use App\Models\Panel\{
+    Blog\Post\Post
+};
+
+use App\Observers\Panel\{
+    Blog\Post\PostObserver
+};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        Post::observe( PostObserver::class ); ## POST
     }
-}
+
+} // AppServiceProvider
